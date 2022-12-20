@@ -1,4 +1,5 @@
 export default{
+  namespace: true,
   state(){
     return {
       products: [
