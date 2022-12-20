@@ -43,7 +43,7 @@ export default {
   },
   methods: {
     onSubmit() {
-      this.$store.commit('addProduct', {
+      this.$store.dispatch('product/add', {
         id: (new Date).toISOString(),
         image: this.image,
         title: this.title,

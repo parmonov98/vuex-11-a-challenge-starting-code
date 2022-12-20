@@ -1,5 +1,5 @@
 export default{
-  namespace: true,
+  namespaced: true,
   state(){
     return {
       products: [
@@ -33,8 +33,7 @@ export default{
     }
   },
   getters: {
-    products(state, getters) {
-      console.log(getters);
+    items(state) {
       return state.products;
     },
   },
@@ -42,5 +41,10 @@ export default{
     addProduct(state, payload) {
       state.products.unshift(payload);
     },
+  },
+  actions: {
+    add(context, payload){
+      context.commit('addProduct', payload);
+    }
   }
 };

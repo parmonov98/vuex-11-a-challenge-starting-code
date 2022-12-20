@@ -7,13 +7,14 @@
 
 
 <script>
-import { mapGetters } from 'vuex';
-import ProductItem from '../components/products/ProductItem.vue';
+import ProductItem from './ProductItem.vue';
 
 export default {
   components: { ProductItem },
   computed: {
-    ...mapGetters('product', ['products'])
+    products(){
+      return this.$store.getters['product/items'];
+    }
   }
 }
 </script>

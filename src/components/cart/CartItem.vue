@@ -15,7 +15,7 @@
           <strong>{{ qty }}</strong>
         </div>
       </div>
-      <div class="item__total">Total: ${{ itemTotal }}</div>
+      <div class="item__total">Total: ${{ total }}</div>
       <div class="actions">
         <base-button @click="decrement" name="-"></base-button>
         <base-button @click="increment" name="+"></base-button>
@@ -29,23 +29,21 @@
 import BaseButton from '../ui/BaseButton.vue';
 export default {
   components: { BaseButton },
-  // inject: ['removeProductFromCart'],
   props: ['prodId', 'title', 'image', 'price', 'qty'],
   computed: {
-    itemTotal() {
+    total() {
       return (this.price * this.qty).toFixed(2);
     },
   },
   methods: {
     remove() {
-      console.log(this.prodId);
-      this.$store.commit('removeProductFromCart', this.prodId)
+      this.$store.dispatch('cart/removeProduct', this.prodId);
     },
     decrement() {
-      this.$store.commit('decrementCartItem', this.prodId)
+      this.$store.dispatch('cart/decrement', this.prodId);
     },
     increment() {
-      this.$store.commit('incrementCartItem', this.prodId)
+      this.$store.dispatch('cart/increment', this.prodId);
     }
   }
 };
